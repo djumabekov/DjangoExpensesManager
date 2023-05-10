@@ -16,6 +16,10 @@
         <a class="nav-link {% if transaction_type == "incomes" %}active{% endif %}"
            href="/account/incomes?search={{ search }}">Доходы</a>
       </li>
+     <li class="nav-item">
+        <a class="nav-link {% if transaction_type == "report" %}active{% endif %}"
+           href="/account/report?search={{ search }}">Отчет</a>
+      </li>
     </ul>
     <form method="get">
     <div class="mb-3">

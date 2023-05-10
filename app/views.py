@@ -1,4 +1,9 @@
 import random
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use("agg")
+from expenses import settings
+
 from typing import Optional
 
 from django.core.paginator import Paginator
@@ -44,6 +49,11 @@ def account(request, transaction_type=""):
         transactions = transactions.filter(amount__lt=0)
     if transaction_type == "incomes":
         transactions = transactions.filter(amount__gt=0)
+    report = ""
+    if transaction_type == "report":
+        filename = f"{user.id}_report.png"
+        report = f"/media/{filename}"
+
     if message == "insufficient":
         message = "Недостаточно средств"
 
@@ -85,6 +95,7 @@ def account(request, transaction_type=""):
         "total": total,
         "avg": avg,
         "message": message,
+        "report": report,
     })
 
 def delete_view(request: HttpRequest, transaction_id: int) -> HttpResponse:

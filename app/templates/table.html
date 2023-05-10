@@ -1,3 +1,6 @@
+    {% if report %}
+        <img src="{{ report }}">
+    {% else %}
     <nav>
       <ul class="pagination">
         <li class="page-item {% if not has_previous %}disabled{% endif %}">
@@ -53,3 +56,4 @@
         </tr>
     </tbody>
     </table>
+    {% endif %}
